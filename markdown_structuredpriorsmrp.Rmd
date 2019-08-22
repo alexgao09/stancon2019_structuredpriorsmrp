@@ -4,6 +4,7 @@ author:
   - Yuxiang Gao, University of Toronto
   - Lauren Kennedy, Columbia University
   - Daniel Simpson, University of Toronto
+  - Andrew Gelman, Columbia University
   
 header-includes:
    - \usepackage{amsmath}
@@ -20,6 +21,8 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # Introduction
+
+\textbf{Arxiv preprint is now online:} \texttt{https://arxiv.org/abs/1908.06716}
 
 We propose structured priors for multilevel regression and poststratification (MRP), which aim to reduce estimation bias by introducing more intelligent shrinkage of posterior estimates. These proposed priors are Gaussian Markov random fields (GMRF) that model the underlying structure of categorical covariates. In our paper, we show through simulation studies that structured priors do indeed reduce posterior MRP bias, with a secondary benefit of reduced posterior variance for the underlying structured covariates. 
 
@@ -56,18 +59,18 @@ The classical specification of MRP has independertly normally distributed random
 
 More complex prior structure allows for nonuniform information-borrowing in the presence of nonrepresentative surveys from a population. The proposal of using structured priors aims to reduce bias for MRP estimates in extremely nonrepresentative data regimes.
 
-# Simulation setup with structured priors
+# Simulation study with structured priors: An example
 
-For the purpose of explaining our proposed method of MRP using structured priors, we'll assume that the population can be described by 2 covariates of age and income, where age ranges from 21--80 and income has 4 categories. Let $\alpha_{j[i]}^\text{Age Cat.}$ be the age category random effect for the $i^{th}$ individual, and let $\alpha_{j[i]}^\text{Income}$ be the income random effect for the $i^{th}$ individual.
+For the purpose of explaining our proposed method of MRP using structured priors, we'll assume that the population can be described by 2 covariates of age and income, where age ranges from 21--80 and income has 4 categories. The simulation study shown in our Arxiv preprint is similar to the one shown here, except with the addition of state-level predictors. Let $\alpha_{j[i]}^\text{Age Cat.}$ be the age category random effect for the $i^{th}$ individual, and let $\alpha_{j[i]}^\text{Income}$ be the income random effect for the $i^{th}$ individual.
 
 For all three prior specifications of MRP, the link function exists as 
 \begin{equation}
     \begin{aligned}
-    \mbox{Pr} (y_i = 1) &= \text{logit}^{-1} \left(\beta_0 + \alpha_{j[i]}^\text{Age Cat.} + \alpha_{j[i]}^\text{Income}. \right),\text{ for }i = 1,\dots,n.
+    \mbox{Pr} (y_i = 1) &= \text{logit}^{-1} \left(\beta_0 + \alpha_{j[i]}^\text{Age Cat.} + \alpha_{j[i]}^\text{Income} \right),\text{ for }i = 1,\dots,n.
     \end{aligned}
   \end{equation}
 
-All three prior specifications of MRP will have independent random effects for the income covariate, as seen in Equation (\ref{eq:incomepriors}). 
+In this specification, the global regression model is $\beta_0$. All three prior specifications of MRP will have independent random effects for the income covariate, as seen in Equation (\ref{eq:incomepriors}). 
 
 \begin{equation}
     \begin{aligned}
