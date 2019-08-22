@@ -138,9 +138,9 @@ Table \ref{Tab:tab1} is the poststratification matrix that defines the populatio
 
 ## Fitting the three prior specifications on various survey data regimes
 
-For every different value of $p$, we will retrieve a survey sample of size \texttt{\url{sample_size}} from the poststratification matrix, and then fit the three prior specifications of MRP for that sample. We will perform this \texttt{runs} times for every $p$. Running the script \texttt{\url{poststrat_pipeline_testing_age3_v2_markdown.R}} performs this.
+For every different value of $p$, we will retrieve a survey sample of size \texttt{\url{sample_size}} from the poststratification matrix, and then fit the three prior specifications of MRP for that sample. We will perform this \texttt{runs} times for every $p$. Running the script \texttt{\url{poststrat_pipeline_testing_age3_v2_posteriorvariance_markdown.R}} performs this.
 
-Near the top of the script \texttt{\url{poststrat_pipeline_testing_age3_v2_markdown.R}}, we can modify the grid the $p$ ranges over. This is the variable \texttt{r}. Currently, the setup has $p \in \{0.1,0.2,\dots,0.9 \}$. Changing this $p$ results in the sample ranging from under-representing to over-representing people of ages 61-80. As well, age is discretized into \texttt{\url{age_grouping_multiplier}}. At the top of the script \texttt{\url{poststrat_pipeline_testing_age3_v2_markdown.R}}, we have 
+Near the top of the script \texttt{\url{poststrat_pipeline_testing_age3_v2_posteriorvariance_markdown.R}}, we can modify the grid the $p$ ranges over. This is the variable \texttt{r}. Currently, the setup has $p \in \{0.1,0.2,\dots,0.9 \}$. Changing this $p$ results in the sample ranging from under-representing to over-representing people of ages 61-80. As well, age is discretized into \texttt{\url{age_grouping_multiplier}}. At the top of the script \texttt{\url{poststrat_pipeline_testing_age3_v2_posteriorvariance_markdown.R}}, we have 
 
 ```{r, eval=FALSE}
 save_ridgeplots = TRUE 
@@ -152,7 +152,7 @@ income_multiplier = 1 # partitions income into more categories
 age_grouping_multiplier = 12 # number of age categories. make sure this can divide 60
 ```
 
-Running \texttt{\url{poststrat_pipeline_testing_age3_v2_markdown.R}} with the current setup takes a full day to run and posterior summary statistics for each $p$ is saved as \texttt{.RData} files. Increasing \texttt{\url{sample_size}} to 500 will result in the script taking two full days to run.
+Running \texttt{\url{poststrat_pipeline_testing_age3_v2_posteriorvariance_markdown.R}} with the current setup takes a full day to run and posterior summary statistics for each $p$ is saved as \texttt{.RData} files. Increasing \texttt{\url{sample_size}} to 500 will result in the script taking two full days to run.
 
 ### Sampling scheme 
 
@@ -259,7 +259,7 @@ The random walk specification is fit as \texttt{\url{fit_rw}}:
 
 ## Summarizing the simulations 
 
-After running \texttt{\url{poststrat_pipeline_testing_age3_v2_markdown.R}}, running \texttt{\url{threemodelwriteup_v2_posteriorvariance_markdown.R}} with the same configurations will produce plots that summarize the simulations. The below figure named \texttt{\url{allmedians_facet_200_12_100_.png}} is produced after running it.
+After running \texttt{\url{poststrat_pipeline_testing_age3_v2_posteriorvariance_markdown.R}}, running \texttt{\url{threemodelwriteup_v2_posteriorvarianceposteriorvariance_markdown.R}} with the same configurations will produce plots that summarize the simulations. The below figure named \texttt{\url{allmedians_facet_200_12_100_.png}} is produced after running it.
 
 ![Posterior medians for 200 simulations for each age-group, where true age preference is increasing-shaped and sample size n = 100. Black circles are true preference probabilities for each age-group. The numerical index for the 9 plots correspond to the expected proportion of the sample that are older adults (also known as the probability of sampling the sub-population group with age categories 9-12). The shaded grey region corresponds to the age categories of older individuals for which we over/under sample. The center of the grid represents completely random sampling and representative sampling for age categories. Local regression is used for the smoothed estimates amongst the three prior specifications.](allmedians_facet_200_12_100_.png)
 From \texttt{\url{allmedians_facet_200_12_100_.png}}, one can see that the two structured prior specifications reduce posterior MRP bias regardless of non-response pattern if there is an underlying pattern. 

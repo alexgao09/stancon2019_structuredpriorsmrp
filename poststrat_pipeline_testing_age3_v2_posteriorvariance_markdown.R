@@ -32,7 +32,7 @@ fig_height = 2400
 # -----------------------------------------------------
 save_ridgeplots = TRUE 
 sample_size = 100
-runs = 3
+runs = 200
 r = 1:9/10
 store_stanobjects = FALSE # do you want to store fitted stan model after each run?
 income_multiplier = 1 # partitions income into more categories
